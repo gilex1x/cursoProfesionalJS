@@ -1,12 +1,24 @@
 
 function MediaPlayer(config){//Le pasamos un objeto
   this.media= config.el;//aca llamammos al video
-  this.plugin=config.plugin||[];
+  this.plugins=config.plugins || [];
+  this._initplugins();//Inicializo los plugins
 }
-/*Los metodos tambien se pueden crear fuera del prototype 
-con objeto.prototype.metodo = funcion(){}
-*/
 
+MediaPlayer.prototype._initplugins=function(){
+  this.plugins.forEach(element => {
+      element.run(this);
+  });
+}
+
+MediaPlayer.prototype.mute=function(){
+  this.media.muted=true;
+ }
+
+ MediaPlayer.prototype.unmute=function(){
+  this.media.muted=false;
+ }
+ 
 MediaPlayer.prototype.play = function(){//Creamos el metodo de la "clase"
   this.media.play();
 }
@@ -22,7 +34,13 @@ MediaPlayer.prototype.actionButton=function(){
   }
 }
 
-
+MediaPlayer.prototype.soundButton= function(){
+  if (this.media.muted){
+    this.unmute();
+  }else{
+    this.mute();
+  }
+}
 
 
 export default MediaPlayer;

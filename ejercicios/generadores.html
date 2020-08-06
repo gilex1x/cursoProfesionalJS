@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //La funcion no se puede ejecutar asi no más
+    function* miFuncion() {
+      console.log('Inicio de mi funcion');
+      yield;//Pausamos la ejecucion del generador
+      console.log('Fin de mi funcion');
+    }
+  //Para ejecutarla tenemos que crear una nueva funcion proveniente del generador 
+  //const nuevaFuncion = miFuncion();
+
+  //Ungenerador infinito
+    function* idMaker (){
+      let id =1;
+      while(true){
+        yield id;
+        id +=1;
+      }
+    }
+    function* idMakerReset (){
+      let id =1;
+      let reset;
+      while(true){
+        //Restauramos el valor de id
+        reset = yield id;
+        if (reset){
+          id =1;
+        }else{
+          id +=1;
+        }       
+      }
+    }
+
+    const nuevaFuncion = idMakerReset();
+  </script>
+</body>
+</html>

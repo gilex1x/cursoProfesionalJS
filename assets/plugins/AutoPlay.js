@@ -1,5 +1,8 @@
-//Creando un plugin de autoplay
-function AutoPlay (){}
+//clase de forma prototype
+function AutoPlay (){
+
+  
+}
 
 AutoPlay.prototype.run=function(player){
     player.mute();

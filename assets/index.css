@@ -36,3 +36,11 @@ main {
 .movie {
   width: 100%;
 }
+
+button{
+  border-radius: 50px;
+}
+
+button:focus{
+  outline: none;
+}
